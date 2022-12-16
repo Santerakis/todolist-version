@@ -1,5 +1,6 @@
 import React, {ChangeEvent, KeyboardEvent, useState} from 'react';
 import {FilterValuesType, TaskType} from "./App";
+import AddItemForm from "./AddItemForm";
 //rsc
 // typescript =>
 // 1. Variable
@@ -20,8 +21,8 @@ type TodoListPropsType = {
 
 const TodoList = (props: TodoListPropsType) => {
 
-    const [title, setTitle] = useState<string>("")
-    const [error, setError] = useState<boolean>(false)
+    // const [title, setTitle] = useState<string>("")
+    // const [error, setError] = useState<boolean>(false)
 
     const tasksListItems = props.tasks.length
         ? <ul>{
@@ -45,34 +46,34 @@ const TodoList = (props: TodoListPropsType) => {
             })}</ul>
         : <span>List is empty</span>
 
-    const addTask = () => {
-        const trimmedTitle = title.trim()
-        if (trimmedTitle) {
-            props.addTask(trimmedTitle, props.todoListId)
-        } else {
-            setError(true)
-        }
-        setTitle("")
-    }
-    const setLocalTitle = (e: ChangeEvent<HTMLInputElement>) => {
-        error && setError(false)
-        setTitle(e.currentTarget.value)
-    }
-    const onEnterAddTask = (e: KeyboardEvent<HTMLInputElement>) => {
-        if (e.key === "Enter") {
-            addTask()
-        }
-    }
+    // const addTask = () => {
+    //     const trimmedTitle = title.trim()
+    //     if (trimmedTitle) {
+    //         props.addTask(trimmedTitle, props.todoListId)
+    //     } else {
+    //         setError(true)
+    //     }
+    //     setTitle("")
+    // }
+    // const setLocalTitle = (e: ChangeEvent<HTMLInputElement>) => {
+    //     error && setError(false)
+    //     setTitle(e.currentTarget.value)
+    // }
+    // const onEnterAddTask = (e: KeyboardEvent<HTMLInputElement>) => {
+    //     if (e.key === "Enter") {
+    //         addTask()
+    //     }
+    // }
     const onClickHandlerCreator = (filter: FilterValuesType) =>
         () => props.changeTodoListFilter(filter, props.todoListId)
     const removeTodoList = ()=> props.removeTodoList(props.todoListId)
 
 
     // new Array(), new Object() => {}
-    const errorStyles = {fontWeight: "bold", color: "red"}
-    const errorMessage = error
-        ? <div style={errorStyles}>Please, enter task title</div>
-        : null
+    // const errorStyles = {fontWeight: "bold", color: "red"}
+    // const errorMessage = error
+    //     ? <div style={errorStyles}>Please, enter task title</div>
+    //     : null
 
     return (
         <div>
@@ -80,16 +81,17 @@ const TodoList = (props: TodoListPropsType) => {
                 {props.title}
                 <button onClick={removeTodoList}>x</button>
             </h3>
-            <div>
-                <input
-                    value={title}
-                    onKeyDown={onEnterAddTask}
-                    onChange={setLocalTitle}
-                    className={error ? "input-error" : ""}
-                />
-                <button onClick={addTask}>+</button>
-                {errorMessage}
-            </div>
+            <AddItemForm addItem={addNewTask} />
+            {/*<div>*/}
+            {/*    <input*/}
+            {/*        value={title}*/}
+            {/*        onKeyDown={onEnterAddTask}*/}
+            {/*        onChange={setLocalTitle}*/}
+            {/*        className={error ? "input-error" : ""}*/}
+            {/*    />*/}
+            {/*    <button onClick={addTask}>+</button>*/}
+            {/*    {errorMessage}*/}
+            {/*</div>*/}
             {tasksListItems}
             <div>
                 <button
