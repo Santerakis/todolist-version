@@ -21,9 +21,6 @@ type TodoListPropsType = {
 
 const TodoList = (props: TodoListPropsType) => {
 
-    // const [title, setTitle] = useState<string>("")
-    // const [error, setError] = useState<boolean>(false)
-
     const tasksListItems = props.tasks.length
         ? <ul>{
             props.tasks.map((task) => {
@@ -46,34 +43,13 @@ const TodoList = (props: TodoListPropsType) => {
             })}</ul>
         : <span>List is empty</span>
 
-    // const addTask = () => {
-    //     const trimmedTitle = title.trim()
-    //     if (trimmedTitle) {
-    //         props.addTask(trimmedTitle, props.todoListId)
-    //     } else {
-    //         setError(true)
-    //     }
-    //     setTitle("")
-    // }
-    // const setLocalTitle = (e: ChangeEvent<HTMLInputElement>) => {
-    //     error && setError(false)
-    //     setTitle(e.currentTarget.value)
-    // }
-    // const onEnterAddTask = (e: KeyboardEvent<HTMLInputElement>) => {
-    //     if (e.key === "Enter") {
-    //         addTask()
-    //     }
-    // }
+    const addNewTask = (title: string) => {
+        props.addTask(title, props.todoListId)
+    }
+
     const onClickHandlerCreator = (filter: FilterValuesType) =>
         () => props.changeTodoListFilter(filter, props.todoListId)
     const removeTodoList = ()=> props.removeTodoList(props.todoListId)
-
-
-    // new Array(), new Object() => {}
-    // const errorStyles = {fontWeight: "bold", color: "red"}
-    // const errorMessage = error
-    //     ? <div style={errorStyles}>Please, enter task title</div>
-    //     : null
 
     return (
         <div>
@@ -82,16 +58,7 @@ const TodoList = (props: TodoListPropsType) => {
                 <button onClick={removeTodoList}>x</button>
             </h3>
             <AddItemForm addItem={addNewTask} />
-            {/*<div>*/}
-            {/*    <input*/}
-            {/*        value={title}*/}
-            {/*        onKeyDown={onEnterAddTask}*/}
-            {/*        onChange={setLocalTitle}*/}
-            {/*        className={error ? "input-error" : ""}*/}
-            {/*    />*/}
-            {/*    <button onClick={addTask}>+</button>*/}
-            {/*    {errorMessage}*/}
-            {/*</div>*/}
+
             {tasksListItems}
             <div>
                 <button

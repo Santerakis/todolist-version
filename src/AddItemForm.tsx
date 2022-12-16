@@ -13,7 +13,7 @@ const AddItemForm = (props: AddItemFromPropsType) => {
     }
     const errorStyles = {fontWeight: "bold", color: "red"}
     const errorMessage = error
-        ? <div style={errorStyles}>Please, enter task title</div>
+        ? <div style={errorStyles}>Please, enter new title</div>
         : null
     const addItem = () => {
         const trimmedTitle = title.trim()
