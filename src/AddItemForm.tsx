@@ -7,6 +7,7 @@ type AddItemFromPropsType = {
 const AddItemForm = (props: AddItemFromPropsType) => {
     const [title, setTitle] = useState<string>("")
     const [error, setError] = useState<boolean>(false)
+
     const setLocalTitle = (e: ChangeEvent<HTMLInputElement>) => {
         error && setError(false)
         setTitle(e.currentTarget.value)

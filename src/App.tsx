@@ -134,6 +134,7 @@ function App() {
         const filteredTasks = getFilteredTasks(tasks[tl.id], tl.filter)
         return (
             <TodoList
+                key={tl.id}
                 todoListId={tl.id}
                 tasks={filteredTasks}
                 title={tl.title}
@@ -142,9 +143,11 @@ function App() {
                 addTask={addTask}
                 removeTask={removeTask}
                 changeTaskStatus={changeTaskStatus}
+                changeTaskTitle={changeTaskTitle}
 
                 removeTodoList={removeTodoList}
                 changeTodoListFilter={changeTodoListFilter}
+                changeTodolistTitle={changeTodolistTitle}
             />
         )
     })

@@ -1,6 +1,7 @@
 import React, {ChangeEvent, KeyboardEvent, useState} from 'react';
 import {FilterValuesType, TaskType} from "./App";
 import AddItemForm from "./AddItemForm";
+import EditAbleSpan from "./EditAbleSpan";
 //rsc
 // typescript =>
 // 1. Variable
@@ -16,6 +17,8 @@ type TodoListPropsType = {
     removeTask: (taskId: string, todoListId: string) => void
     removeTodoList: (todoListId: string) => void
     changeTaskStatus: (taskId: string, isDone: boolean, todoListId: string) => void
+    changeTaskTitle: (taskId: string, title: string, todoListId: string) => void
+    changeTodolistTitle: (title: string, todoListId: string) => void
     changeTodoListFilter: (nextFilterValue: FilterValuesType, todoListId: string) => void
 }
 
@@ -27,6 +30,9 @@ const TodoList = (props: TodoListPropsType) => {
                 const removeTask = () => props.removeTask(task.id, props.todoListId)
                 const changeTaskStatus = (e: ChangeEvent<HTMLInputElement>) =>
                     props.changeTaskStatus(task.id, e.currentTarget.checked, props.todoListId)
+                const changeTaskTitle = (title: string) => {
+                    props.changeTaskTitle(task.id, title, props.todoListId)
+                }
 
                 return (
                     <li key={task.id}>
@@ -35,8 +41,9 @@ const TodoList = (props: TodoListPropsType) => {
                             checked={task.isDone}
                             onChange={changeTaskStatus}
                         />
-                        <span
-                            className={task.isDone ? "task-done" : ""}>{task.title}</span>
+                        <div style={{display: "inline-block"}} className={task.isDone ? "task-done" : ""}>
+                            <EditAbleSpan title={task.title} changeTitle={changeTaskTitle}/>
+                        </div>
                         <button onClick={removeTask}>x</button>
                     </li>
                 )
@@ -51,10 +58,12 @@ const TodoList = (props: TodoListPropsType) => {
         () => props.changeTodoListFilter(filter, props.todoListId)
     const removeTodoList = ()=> props.removeTodoList(props.todoListId)
 
+    const changeTodolistTitle = (title: string) => props.changeTodolistTitle(title, props.todoListId)
+
     return (
         <div>
             <h3>
-                {props.title}
+                <EditAbleSpan title={props.title} changeTitle={changeTodolistTitle} />
                 <button onClick={removeTodoList}>x</button>
             </h3>
             <AddItemForm addItem={addNewTask} />
