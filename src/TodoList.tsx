@@ -2,6 +2,8 @@ import React, {ChangeEvent, KeyboardEvent, useState} from 'react';
 import {FilterValuesType, TaskType} from "./App";
 import AddItemForm from "./AddItemForm";
 import EditAbleSpan from "./EditAbleSpan";
+import {Button, IconButton} from "@mui/material";
+import CancelPresentationOutlinedIcon from '@mui/icons-material/CancelPresentationOutlined';
 //rsc
 // typescript =>
 // 1. Variable
@@ -44,7 +46,11 @@ const TodoList = (props: TodoListPropsType) => {
                         <div style={{display: "inline-block"}} className={task.isDone ? "task-done" : ""}>
                             <EditAbleSpan title={task.title} changeTitle={changeTaskTitle}/>
                         </div>
-                        <button onClick={removeTask}>x</button>
+                        {/*<button onClick={removeTask}>x</button>*/}
+                        <IconButton onClick={removeTask}
+                        sx= {{p:'0px', ml:'10px'}}>
+                            <CancelPresentationOutlinedIcon/>
+                        </IconButton>
                     </li>
                 )
             })}</ul>
@@ -64,24 +70,36 @@ const TodoList = (props: TodoListPropsType) => {
         <div>
             <h3>
                 <EditAbleSpan title={props.title} changeTitle={changeTodolistTitle} />
-                <button onClick={removeTodoList}>x</button>
+                {/*<button onClick={removeTodoList}>x</button>*/}
+                <IconButton onClick={removeTodoList}>
+                    <CancelPresentationOutlinedIcon/>
+                </IconButton>
             </h3>
             <AddItemForm addItem={addNewTask} />
 
             {tasksListItems}
             <div>
-                <button
-                    className={props.filter === "all" ? "btn-active" : ""}
+                <Button
+                    sx={{mr:'5px', height:'20px', fontSize:'10px', pt:'6px'}}
+                    color={props.filter === "all" ? "secondary" : "primary"}
+                    size='small'
+                    variant='contained'
                     onClick={onClickHandlerCreator("all")}>All
-                </button>
-                <button
-                    className={props.filter === "active" ? "btn-active" : ""}
+                </Button>
+                <Button
+                    sx={{mr:'5px', height:'20px', fontSize:'10px', pt:'6px'}}
+                    color={props.filter === "active" ? "secondary" : "primary"}
+                    size='small'
+                    variant='contained'
                     onClick={onClickHandlerCreator("active")}>Active
-                </button>
-                <button
-                    className={props.filter === "completed" ? "btn-active" : ""}
+                </Button>
+                <Button
+                    sx={{height:'20px', fontSize:'10px', pt:'6px'}}
+                    color={props.filter === "completed" ? "secondary" : "primary"}
+                    size='small'
+                    variant='contained'
                     onClick={onClickHandlerCreator("completed")}>Completed
-                </button>
+                </Button>
             </div>
         </div>
     );

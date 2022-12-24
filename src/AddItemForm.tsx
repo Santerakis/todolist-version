@@ -1,4 +1,6 @@
 import React, {ChangeEvent, KeyboardEvent, useState} from 'react';
+import {Button} from "@mui/material";
+import PostAddIcon from '@mui/icons-material/PostAdd';
 
 type AddItemFromPropsType = {
     addItem: (title: string) => void
@@ -39,7 +41,13 @@ const AddItemForm = (props: AddItemFromPropsType) => {
                 onChange={setLocalTitle}
                 className={error ? "input-error" : ""}
             />
-            <button onClick={addItem}>+</button>
+            {/*<button onClick={addItem}>+</button>*/}
+            <Button
+                size='small'
+                sx={{height:'20px', fontSize:'10px', py:'8px', minWidth: 'fit-content'}}
+                variant='contained'
+                endIcon={<PostAddIcon/>}
+                onClick={addItem}>Add</Button>
             {errorMessage}
         </div>
     );
