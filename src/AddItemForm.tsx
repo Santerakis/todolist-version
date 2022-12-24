@@ -30,7 +30,7 @@ const AddItemForm = (props: AddItemFromPropsType) => {
     const onEnterAddItem = (e: KeyboardEvent<HTMLInputElement>) => {
         if (e.key === "Enter") {
             addItem()
-        }
+        } 
     }
 
     return (
