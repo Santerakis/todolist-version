@@ -1,8 +1,9 @@
 import React, {ChangeEvent, useState, KeyboardEvent} from 'react';
+import {TextField} from "@mui/material";
 
 type EditAbleSpanPropsType = {
     title: string
-    changeTitle: (newTitle:string) => void
+    changeTitle: (newTitle: string) => void
 }
 
 const EditAbleSpan = (props: EditAbleSpanPropsType) => {
@@ -23,14 +24,23 @@ const EditAbleSpan = (props: EditAbleSpanPropsType) => {
     }
     return (
         isEditMode
-        ? <input
+            // ? <input
+            //     onChange={setLocalTitle}
+            //     value={title}
+            //     onBlur={offEditMode}
+            //     autoFocus
+            //     onKeyDown={onKeyDownOffEditMode}
+            // />
+            ? <TextField
                 onChange={setLocalTitle}
                 value={title}
                 onBlur={offEditMode}
                 autoFocus
                 onKeyDown={onKeyDownOffEditMode}
-                />
-        : <span onDoubleClick={onEditMode}>{props.title}</span>
+                variant='standard'
+
+            />
+            : <span onDoubleClick={onEditMode}>{props.title}</span>
     );
 };
 

@@ -5,6 +5,9 @@
 
 .App > div {
   margin-right: 50px;
+  border: solid 2px #1976d2;
+  border-radius: 10px;
+  padding: 10px;
 }
 .btn-active {
   background-color: darkslateblue;
@@ -19,3 +22,14 @@
   border: 2px solid red;
   outline: none;
 }
+
+li {
+  list-style-type: none;
+}
+ul {
+  padding-left: 0;
+}
+.none {
+  display: none;
+}
+

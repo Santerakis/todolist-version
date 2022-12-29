@@ -153,10 +153,14 @@ function App() {
     })
 
     return (
-        <div className="App">
+        <div>
             <AddItemForm addItem={addTodolist} />
-            {todoListsComponents}
+            <div className="App">
+                {/*<AddItemForm addItem={addTodolist} />*/}
+                {todoListsComponents}
+            </div>
         </div>
+
     );
 }
 

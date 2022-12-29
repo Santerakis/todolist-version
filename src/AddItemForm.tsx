@@ -1,5 +1,5 @@
 import React, {ChangeEvent, KeyboardEvent, useState} from 'react';
-import {Button} from "@mui/material";
+import {Button, TextField} from "@mui/material";
 import PostAddIcon from '@mui/icons-material/PostAdd';
 
 type AddItemFromPropsType = {
@@ -15,9 +15,9 @@ const AddItemForm = (props: AddItemFromPropsType) => {
         setTitle(e.currentTarget.value)
     }
     const errorStyles = {fontWeight: "bold", color: "red"}
-    const errorMessage = error
-        ? <div style={errorStyles}>Please, enter new title</div>
-        : null
+    // const errorMessage = error
+    //     ? <div style={errorStyles}>Please, enter new title</div>
+    //     : null
     const addItem = () => {
         const trimmedTitle = title.trim()
         if (trimmedTitle) {
@@ -30,25 +30,37 @@ const AddItemForm = (props: AddItemFromPropsType) => {
     const onEnterAddItem = (e: KeyboardEvent<HTMLInputElement>) => {
         if (e.key === "Enter") {
             addItem()
-        } 
+        }
     }
 
     return (
         <div>
-            <input
+            {/*<input*/}
+            {/*    value={title}*/}
+            {/*    onKeyDown={onEnterAddItem}*/}
+            {/*    onChange={setLocalTitle}*/}
+            {/*    className={error ? "input-error" : ""}*/}
+            {/*/>*/}
+            <TextField
                 value={title}
                 onKeyDown={onEnterAddItem}
                 onChange={setLocalTitle}
-                className={error ? "input-error" : ""}
+                variant='outlined'
+                size='small'
+                label='Title'
+                error={error}
+                helperText={error && 'Please, enter new title'}
+
             />
             {/*<button onClick={addItem}>+</button>*/}
             <Button
                 size='small'
-                sx={{height:'20px', fontSize:'10px', py:'8px', minWidth: 'fit-content'}}
+                sx={{mb:'2px', height:'39px', fontSize:'10px', py:'8px', ml:'5px', minWidth: 'fit-content'}}
                 variant='contained'
                 endIcon={<PostAddIcon/>}
-                onClick={addItem}>Add</Button>
-            {errorMessage}
+                onClick={addItem}>Add
+            </Button>
+            {/*{errorMessage}*/}
         </div>
     );
 };
